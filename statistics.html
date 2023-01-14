@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- BOOTSTRAP -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- ICONS -->
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"
+    ></script>
+
+    <title>Bootstrap 5 - Admin Template Design</title>
+  </head>
+  <body>
+    <header>
+      <nav
+        class="navbar navbar-expand-sm d-flex justify-content-start px-5 py-3"
+      >
+        <ion-icon
+          class="fs-1"
+          data-bs-toggle="offcanvas"
+          data-bs-target="#offcanvasExample"
+          aria-controls="offcanvasExample"
+          name="menu-outline"
+        ></ion-icon>
+
+        <div class="logo-box">
+          <a class="navbar-brand fw-bolder fs-3 ms-3" href="index.html"
+            >Admin Template</a
+          >
+        </div>
+      </nav>
+    </header>
+    <main>
+      <section>
+        <div
+          class="offcanvas offcanvas-start text-bg-light"
+          tabindex="-1"
+          id="offcanvasExample"
+          aria-labelledby="offcanvasExampleLabel"
+        >
+          <div class="offcanvas-header">
+            <h4 class="offcanvas-title" id="offcanvasExampleLabel">
+              Navigation Menu
+            </h4>
+            <button
+              type="button"
+              class="btn-close text-dark"
+              data-bs-dismiss="offcanvas"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="nav flex-column">
+              <li class="nav-item flex">
+                <ion-icon name="home-outline"></ion-icon>
+                <a
+                  class="nav-link text-dark"
+                  aria-current="page"
+                  href="index.html"
+                  >Home</a
+                >
+              </li>
+              <li class="nav-item flex">
+                <ion-icon name="people-outline"></ion-icon>
+                <a class="nav-link text-dark" href="users.html">Users</a>
+              </li>
+              <li class="nav-item flex">
+                <ion-icon name="grid-outline"></ion-icon>
+                <a class="nav-link text-dark" href="products.html">Products</a>
+              </li>
+              <li class="nav-item flex">
+                <ion-icon name="documents-outline"></ion-icon>
+                <a href="orders.html" class="nav-link text-dark">Orders</a>
+              </li>
+              <li class="nav-item flex">
+                <ion-icon name="bar-chart-outline"></ion-icon>
+                <a href="statistics.html" class="nav-link text-dark"
+                  >Statistics</a
+                >
+              </li>
+              <li class="nav-item flex my-3">
+                <div class="dropdown">
+                  <a
+                    class="btn btn-secondary dropdown-toggle"
+                    href="#"
+                    role="button"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    John Doe
+                  </a>
+
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="dropdown-item text-danger" href="#">Log out</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section id="home-section">
+        <div class="container-fluid px-5 py-5">
+          <div
+            class="heading-box d-flex align-items-center justify-content-start mb-5"
+          >
+            <ion-icon class="fs-1" name="bar-chart-outline"></ion-icon>
+            <h1 class="m-0 ps-3">Statistics</h1>
+          </div>
+          <div class="container-fluid py-4">
+            <div class="row gx-5 gy-5">
+              <div class="col-sm-5" id="LineChart"></div>
+              <div class="col-sm-5" id="BarChart"></div>
+              <div class="col-sm-5" id="PieChart"></div>
+              <div class="col-sm-5" id="ColumnChart"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="https://www.gstatic.com/charts/loader.js"></script>
+    <script></script>
+    <script>
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        // Set Data
+        var data = google.visualization.arrayToDataTable([
+          ["Day", "Amount"],
+          ["Mon", 60],
+          ["Tue", 83],
+          ["Wed", 75],
+          ["Thu", 90],
+          ["Fri", 73],
+        ]);
+        // Set Options
+        var options = {
+          title: "Sales per Day",
+          hAxis: { title: "Day" },
+          vAxis: { title: "Amount in thousands" },
+          legend: "none",
+        };
+
+        // Draw Chart
+        var chart = new google.visualization.LineChart(
+          document.getElementById("LineChart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Product", "Quantity"],
+          ["p1", 55],
+          ["p2", 49],
+          ["p3", 44],
+          ["p4", 24],
+          ["p5", 15],
+        ]);
+
+        var options = {
+          title: "Product Sales (in Quanitty) ",
+          hAxis: { title: "Quantity" },
+          vAxis: { title: "Product" },
+          legend: "none",
+        };
+
+        var chart = new google.visualization.BarChart(
+          document.getElementById("BarChart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+
+    <script>
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["City", "Sales"],
+          ["Nairobi", 54.8],
+          ["Mombasa", 48.6],
+          ["Kisumu", 44.4],
+          ["Nakuru", 23.9],
+          ["Eldoret", 14.5],
+        ]);
+
+        var options = {
+          title: "Sales per City",
+          is3D: true,
+        };
+
+        var chart = new google.visualization.PieChart(
+          document.getElementById("PieChart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+    <script>
+      google.charts.load("current", { packages: ["corechart"] });
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ["Year", "Profit"],
+          ["2018", 75],
+          ["2019", 55],
+          ["2020", 44],
+          ["2021", 80],
+          ["2022", 60],
+        ]);
+
+        var options = {
+          title: "Profit per Year",
+          hAxis: { title: "Year" },
+          vAxis: { title: "Profit (%)" },
+          legend: "none",
+        };
+
+        var chart = new google.visualization.ColumnChart(
+          document.getElementById("ColumnChart")
+        );
+        chart.draw(data, options);
+      }
+    </script>
+  </body>
+</html>
